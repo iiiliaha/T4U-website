@@ -1,0 +1,4097 @@
+<!DOCTYPE html>
+<html lang="zh-MY" class="smooth-scroll">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>T4U Malaysia | 寻找最适合你的补习班，从这里开始</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+/* ===== WhatsApp 客服模态框样式 ===== */
+.whatsapp-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    opacity: 0;
+    animation: modalFadeIn 0.3s ease forwards;
+}
+
+@keyframes modalFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.whatsapp-modal-content {
+    background: white;
+    border-radius: 25px;
+    width: 100%;
+    max-width: 500px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    animation: modalSlideUp 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes modalSlideUp {
+    from { transform: translateY(50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.modal-header {
+    background: var(--gradient-primary);
+    color: white;
+    padding: 25px;
+    border-radius: 25px 25px 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-header h3 {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 1.3rem;
+}
+
+.close-modal {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 2rem;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: background-color 0.3s;
+}
+
+.close-modal:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.modal-body {
+    padding: 30px;
+}
+
+.center-info {
+    background: #f8fafc;
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 25px;
+    border-left: 4px solid var(--primary-blue);
+}
+
+.form-group {
+    margin-bottom: 25px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 10px;
+    color: #1e293b;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 16px 20px;
+    border: 2px solid #e2e8f0;
+    border-radius: 15px;
+    font-size: 1rem;
+    font-family: inherit;
+    transition: all 0.3s;
+    background: white;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary-blue);
+    box-shadow: 0 0 0 3px rgba(0, 102, 179, 0.1);
+}
+
+.form-group small {
+    display: block;
+    margin-top: 8px;
+    color: #64748b;
+    font-size: 0.85rem;
+}
+
+.checkbox-group {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+}
+
+.checkbox-group input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    margin-top: 3px;
+}
+
+.checkbox-group label {
+    margin: 0;
+    font-weight: normal;
+    flex: 1;
+}
+
+.form-actions {
+    display: flex;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.whatsapp-submit-btn {
+    flex: 1;
+    background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+    color: white;
+    border: none;
+    padding: 18px;
+    border-radius: 15px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    transition: all 0.3s;
+}
+
+.whatsapp-submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(37, 211, 102, 0.3);
+}
+
+.cancel-btn {
+    flex: 0 0 auto;
+    background: #f1f5f9;
+    color: #64748b;
+    border: none;
+    padding: 18px 25px;
+    border-radius: 15px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.cancel-btn:hover {
+    background: #e2e8f0;
+}
+
+.modal-footer {
+    background: #f8fafc;
+    padding: 20px 30px;
+    border-radius: 0 0 25px 25px;
+    text-align: center;
+    color: #64748b;
+    font-size: 0.95rem;
+}
+
+.modal-footer i {
+    color: var(--primary-blue);
+    margin-right: 8px;
+}
+
+/* 浮动客服按钮 */
+.floating-whatsapp-btn {
+    position: fixed;
+    bottom: 90px;
+    right: 25px;
+    width: 70px;
+    height: 70px;
+    background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 2rem;
+    cursor: pointer;
+    z-index: 9998;
+    box-shadow: 0 10px 30px rgba(37, 211, 102, 0.4);
+    transition: all 0.3s;
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.floating-whatsapp-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 15px 40px rgba(37, 211, 102, 0.5);
+}
+
+.pulse-ring {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 2px solid #25D366;
+    border-radius: 50%;
+    animation: pulse 2s ease-out infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); opacity: 1; }
+    100% { transform: scale(1.5); opacity: 0; }
+}
+
+/* ===== 汉堡菜单样式 ===== */
+.hamburger-menu {
+    position: fixed;
+    top: 30px;
+    right: 30px;
+    z-index: 9997;
+}
+
+.hamburger-icon {
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s;
+}
+
+.hamburger-icon:hover {
+    background: white;
+    transform: scale(1.05);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+}
+
+.hamburger-icon span {
+    width: 25px;
+    height: 3px;
+    background: var(--primary-blue);
+    border-radius: 2px;
+    transition: all 0.3s;
+}
+
+.hamburger-icon.active span:nth-child(1) {
+    transform: rotate(45deg) translate(6px, 6px);
+}
+
+.hamburger-icon.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger-icon.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -7px);
+}
+
+.menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s;
+    z-index: 9996;
+}
+
+.menu-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.menu-content {
+    position: fixed;
+    top: 0;
+    right: -400px;
+    width: 350px;
+    height: 100%;
+    background: white;
+    z-index: 9997;
+    transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    flex-direction: column;
+}
+
+.menu-content.active {
+    right: 0;
+}
+
+.menu-header {
+    background: var(--gradient-primary);
+    padding: 30px;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.avatar {
+    width: 60px;
+    height: 60px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+}
+
+.user-details h3 {
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+.user-details p {
+    margin: 5px 0 0;
+    opacity: 0.8;
+    font-size: 0.9rem;
+}
+
+.close-menu {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 2rem;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: background-color 0.3s;
+}
+
+.close-menu:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.menu-items {
+    flex: 1;
+    padding: 20px 0;
+    overflow-y: auto;
+}
+
+.menu-item {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 18px 30px;
+    color: #1e293b;
+    text-decoration: none;
+    transition: all 0.3s;
+    border-left: 4px solid transparent;
+}
+
+.menu-item:hover {
+    background: #f8fafc;
+    border-left-color: var(--primary-blue);
+    padding-left: 34px;
+}
+
+.menu-item.active {
+    background: linear-gradient(90deg, rgba(0, 102, 179, 0.1), transparent);
+    border-left-color: var(--primary-blue);
+    color: var(--primary-blue);
+}
+
+.menu-item i {
+    width: 24px;
+    text-align: center;
+    font-size: 1.2rem;
+}
+
+.menu-item span {
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.menu-footer {
+    border-top: 1px solid #e2e8f0;
+    padding: 25px 30px;
+}
+
+.app-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.app-logo {
+    width: 50px;
+    height: 50px;
+    background: var(--gradient-primary);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.5rem;
+}
+
+.app-details h4 {
+    margin: 0;
+    color: #1e293b;
+    font-size: 1.1rem;
+}
+
+.app-details p {
+    margin: 5px 0 0;
+    color: #64748b;
+    font-size: 0.9rem;
+}
+
+.menu-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.menu-btn {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 14px 20px;
+    background: #f8fafc;
+    border: none;
+    border-radius: 12px;
+    color: #1e293b;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-align: left;
+}
+
+.menu-btn:hover {
+    background: #e2e8f0;
+    transform: translateX(5px);
+}
+
+.menu-btn i {
+    width: 20px;
+    text-align: center;
+}
+
+.menu-btn.logout {
+    background: #fee2e2;
+    color: #dc2626;
+}
+
+.menu-btn.logout:hover {
+    background: #fecaca;
+}
+
+/* ===== 底部导航栏 ===== */
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    display: flex;
+    justify-content: space-around;
+    padding: 15px 10px;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    z-index: 9995;
+    box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.1);
+}
+
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    color: #64748b;
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 15px;
+    transition: all 0.3s;
+    min-width: 60px;
+}
+
+.nav-item i {
+    font-size: 1.5rem;
+}
+
+.nav-item span {
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.nav-item.active {
+    color: var(--primary-blue);
+    background: rgba(0, 102, 179, 0.1);
+    transform: translateY(-5px);
+}
+
+.nav-item:hover:not(.active) {
+    color: #1e293b;
+    background: rgba(0, 0, 0, 0.05);
+}
+
+/* ===== 页面容器 ===== */
+.page-container {
+    padding-bottom: 90px; /* 给底部导航栏留空间 */
+}
+
+/* ===== 响应式调整 ===== */
+@media (max-width: 768px) {
+    .hamburger-menu {
+        top: 20px;
+        right: 20px;
+    }
+    
+    .hamburger-icon {
+        width: 45px;
+        height: 45px;
+    }
+    
+    .floating-whatsapp-btn {
+        bottom: 85px;
+        right: 20px;
+        width: 60px;
+        height: 60px;
+        font-size: 1.8rem;
+    }
+    
+    .whatsapp-modal-content {
+        max-width: 95%;
+        max-height: 95vh;
+    }
+    
+    .menu-content {
+        width: 300px;
+    }
+    
+    .bottom-nav {
+        padding: 12px 5px;
+    }
+    
+    .nav-item {
+        padding: 8px 10px;
+        min-width: 55px;
+    }
+    
+    .nav-item i {
+        font-size: 1.3rem;
+    }
+    
+    .nav-item span {
+        font-size: 0.8rem;
+    }
+}       
+/* 修复文字渐变兼容性警告 */
+.hero-text h1 {
+    background: linear-gradient(to right, white, #ffeaa7);
+    background-clip: text; /* 标准属性在前 */
+    -webkit-background-clip: text; /* 供应商前缀在后 */
+    -webkit-text-fill-color: transparent;
+}
+
+/* 搜索框增强效果 */
+.search-input {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.search-input:focus {
+    transform: translateY(-1px);
+    box-shadow: 0 10px 25px rgba(0, 102, 179, 0.15);
+}
+
+.search-btn:active {
+    transform: scale(0.98);
+}
+
+/* 快捷键提示样式 */
+.keyboard-hint {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.05);
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    color: #64748b;
+    font-family: monospace;
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+/* 搜索动画 */
+@keyframes slideUp {
+    from { transform: translateX(-50%) translateY(100px); opacity: 0; }
+    to { transform: translateX(-50%) translateY(0); opacity: 1; }
+}
+
+@keyframes slideDown {
+    from { transform: translateX(-50%) translateY(0); opacity: 1; }
+    to { transform: translateX(-50%) translateY(100px); opacity: 0; }
+}
+
+.searching {
+    border-color: #0066B3 !important;
+    box-shadow: 0 0 0 3px rgba(0, 102, 179, 0.1) !important;
+}
+
+/* 搜索结果高亮 */
+mark {
+    background-color: #ffcc00;
+    color: #000;
+    padding: 2px 4px;
+    border-radius: 3px;
+}
+
+/* 快捷键标签 */
+.shortcut-key {
+    display: inline-block;
+    background: rgba(0,0,0,0.1);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    margin-left: 5px;
+    font-family: monospace;
+}
+
+/* 卡片悬停效果 */
+.center-card:hover {
+    transform: translateY(-5px);
+    transition: transform 0.3s ease;
+}
+
+/* ============================================
+   平板设备优化 (768px以下)
+   ============================================ */
+@media (max-width: 768px) {
+    /* 头部布局调整 */
+    .logo-area {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+        margin-bottom: 30px;
+    }
+    
+    .logo-badge {
+        width: 60px;
+        height: 60px;
+        margin: 0 auto;
+    }
+    
+    .hero-text h1 {
+        font-size: 2.2rem;
+        background: none;
+        background-clip: unset;
+        -webkit-background-clip: unset;
+        -webkit-text-fill-color: unset;
+        color: white;
+    }
+    
+    .hero-text p {
+        font-size: 1.1rem;
+    }
+    
+    /* 搜索区域优化 */
+    .search-box {
+        flex-direction: column;
+        gap: 12px;
+    }
+    
+    .search-input, .search-btn {
+        width: 100%;
+        min-width: unset;
+        box-sizing: border-box;
+    }
+    
+    .search-input {
+        padding: 16px 20px;
+        font-size: 16px; /* 防止iOS缩放 */
+    }
+    
+    .search-btn {
+        padding: 18px;
+        justify-content: center;
+        font-size: 1.1rem;
+    }
+    
+    /* 快速筛选按钮 */
+    .quick-filters {
+        justify-content: flex-start;
+        overflow-x: auto;
+        padding-bottom: 10px;
+        margin: 0 -5px;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+    }
+    
+    .quick-filters::-webkit-scrollbar {
+        display: none;
+    }
+    
+    .filter-tag {
+        flex-shrink: 0;
+        padding: 12px 20px;
+        white-space: nowrap;
+    }
+    
+    /* 主要内容区域 */
+    .main-content {
+        margin: 25px auto;
+        padding: 0 15px;
+    }
+    
+    .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+        margin-bottom: 20px;
+    }
+    
+    .section-title {
+        font-size: 1.6rem;
+    }
+    
+    .results-count {
+        align-self: stretch;
+        text-align: center;
+        padding: 12px;
+        font-size: 1rem;
+    }
+    
+    /* 补习班卡片网格 */
+    .centers-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .center-card {
+        margin: 0 5px;
+        border-radius: 18px;
+    }
+    
+    .card-top, .card-middle, .card-bottom {
+        padding: 20px;
+    }
+    
+    .card-title {
+        font-size: 1.3rem;
+        line-height: 1.4;
+    }
+    
+    .subject-badge {
+        font-size: 0.85rem;
+        padding: 5px 12px;
+    }
+    
+    /* 信息网格改为单列 */
+    .info-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    
+    .info-item {
+        align-items: flex-start;
+    }
+    
+    .info-icon {
+        margin-top: 2px;
+    }
+    
+    /* 价格标签 */
+    .price-tag {
+        font-size: 1.2rem;
+        padding: 14px;
+        margin: 15px 0;
+    }
+    
+    /* 评分区域 */
+    .rating-container {
+        padding: 12px;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+    
+    /* 操作按钮 */
+    .action-buttons {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .action-btn {
+        width: 100%;
+        padding: 16px;
+        font-size: 1.05rem;
+    }
+    
+    /* 底部区域 */
+    .footer {
+        padding: 40px 20px 25px;
+        margin-top: 40px;
+    }
+    
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        text-align: center;
+    }
+    
+    .footer-section {
+        padding: 0 10px;
+    }
+    
+    .footer-section h3 {
+        margin-bottom: 15px;
+    }
+    
+    .footer-links {
+        text-align: center;
+    }
+    
+    .footer-links li {
+        margin-bottom: 10px;
+    }
+    
+    .footer-bottom {
+        padding-top: 25px;
+        font-size: 0.85rem;
+    }
+}
+
+/* ============================================
+   手机设备优化 (480px以下 - 小手机)
+   ============================================ */
+@media (max-width: 480px) {
+    body {
+        padding: 0;
+    }
+    
+    /* 头部区域 */
+    .hero-section {
+        padding: 25px 12px;
+        border-radius: 0 0 15px 15px;
+    }
+    
+    .hero-text h1 {
+        font-size: 1.8rem;
+        line-height: 1.3;
+    }
+    
+    .hero-text p {
+        font-size: 1rem;
+        line-height: 1.5;
+    }
+    
+    /* 搜索卡片 */
+    .search-card {
+        padding: 18px;
+        border-radius: 12px;
+        margin-top: 10px;
+    }
+    
+    .search-input {
+        padding: 14px 16px;
+        border-radius: 10px;
+    }
+    
+    .search-btn {
+        padding: 16px;
+        border-radius: 10px;
+        font-size: 1rem;
+    }
+    
+    /* 快速筛选按钮 */
+    .filter-tag {
+        padding: 10px 16px;
+        font-size: 0.9rem;
+    }
+    
+    .shortcut-key {
+        display: none; /* 小屏幕上隐藏快捷键提示 */
+    }
+    
+    /* 主要内容 */
+    .main-content {
+        margin: 20px auto;
+    }
+    
+    .section-title {
+        font-size: 1.4rem;
+    }
+    
+    .results-count {
+        padding: 10px 15px;
+        font-size: 0.95rem;
+    }
+    
+    /* 补习班卡片 */
+    .centers-grid {
+        gap: 15px;
+    }
+    
+    .center-card {
+        border-radius: 15px;
+        margin: 0 3px;
+    }
+    
+    .card-top, .card-middle, .card-bottom {
+        padding: 18px;
+    }
+    
+    .card-title {
+        font-size: 1.2rem;
+    }
+    
+    .card-location {
+        font-size: 0.9rem;
+    }
+    
+    /* 价格标签 */
+    .price-tag {
+        font-size: 1.1rem;
+        padding: 12px;
+        margin: 12px 0;
+    }
+    
+    .stars {
+        font-size: 1.1rem;
+    }
+    
+    .rating-text {
+        font-size: 1rem;
+    }
+    
+    /* 加载状态 */
+    .loading-container {
+        padding: 40px 15px;
+    }
+    
+    .loading-text {
+        font-size: 1rem;
+    }
+    
+    /* 错误状态 */
+    .error-container {
+        padding: 30px 20px;
+        margin: 0 5px;
+    }
+    
+    .error-title {
+        font-size: 1.3rem;
+    }
+    
+    /* 空状态 */
+    .empty-state {
+        padding: 40px 15px;
+    }
+    
+    .empty-icon {
+        font-size: 3rem;
+    }
+    
+    .empty-title {
+        font-size: 1.3rem;
+    }
+    
+    /* 底部 */
+    .footer {
+        padding: 30px 15px 20px;
+    }
+    
+    .footer-links {
+        font-size: 0.9rem;
+    }
+    
+    .footer-bottom {
+        font-size: 0.8rem;
+        line-height: 1.5;
+    }
+    
+    .malaysia-badge {
+        padding: 6px 12px;
+        font-size: 0.9rem;
+    }
+}
+
+/* ============================================
+   触摸设备优化 (手机和平板)
+   ============================================ */
+@media (hover: none) and (pointer: coarse) {
+    /* 增大触摸目标 - 符合Apple Human Interface Guidelines */
+    button, 
+    .filter-tag, 
+    .action-btn,
+    input[type="text"],
+    select {
+        min-height: 44px; /* 最小触摸目标尺寸 */
+    }
+    
+    .search-input {
+        min-height: 50px;
+    }
+    
+    /* 触摸反馈效果 */
+    button:active,
+    .filter-tag:active,
+    .action-btn:active {
+        opacity: 0.85;
+        transform: scale(0.97);
+        transition: transform 0.1s ease, opacity 0.1s ease;
+    }
+    
+    /* 卡片触摸反馈 */
+    .center-card:active {
+        transform: scale(0.99);
+        opacity: 0.95;
+    }
+    
+    /* 移除悬停效果（触摸设备不支持hover） */
+    .center-card:hover {
+        transform: none;
+        box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+    }
+    
+    .filter-tag:hover {
+        transform: none;
+        border-color: #e1e5e9;
+    }
+    
+    .filter-tag.active:hover {
+        transform: none;
+    }
+    
+    /* 滚动优化 - 惯性滚动 */
+    .centers-grid,
+    .quick-filters {
+        -webkit-overflow-scrolling: touch;
+    }
+}
+
+@media (max-width: 768px) {
+    ::-webkit-scrollbar {
+        width: 0;
+        height: 0;
+        display: none;
+    }
+}
+/* 移除iOS输入框的内阴影 */
+input[type="text"],
+input[type="search"] {
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+/* 隐藏滚动条但保持滚动 */
+@media (max-width: 768px) {
+    ::-webkit-scrollbar {
+        width: 0;
+        height: 0;
+        display: none;
+    }
+    
+    .centers-grid,
+    .quick-filters,
+    body {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+    
+    /* 允许弹性滚动 */
+    body {
+        overflow-y: scroll;
+        -webkit-overflow-scrolling: touch;
+    }
+}
+
+/* ============================================
+   手机键盘弹出时的布局优化
+   ============================================ */
+@media (max-height: 500px) and (orientation: landscape) {
+    /* 横屏键盘模式 */
+    .hero-section {
+        padding-top: 15px;
+        padding-bottom: 15px;
+        min-height: auto;
+    }
+    
+    .logo-area {
+        margin-bottom: 15px;
+    }
+    
+    .hero-text h1 {
+        font-size: 1.6rem;
+    }
+    
+    .search-card {
+        margin-top: 5px;
+        padding: 15px;
+    }
+    
+    .main-content {
+        margin: 15px auto;
+    }
+    
+    /* 减少卡片高度 */
+    .center-card {
+        min-height: auto;
+    }
+    
+    .info-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* ============================================
+   深色模式支持 (可选)
+   ============================================ */
+@media (prefers-color-scheme: dark) {
+    /* 如果用户系统开启深色模式，可以在这里添加适配 */
+    /* 注意：需要调整颜色方案 */
+}
+
+/* ============================================
+   高分辨率屏幕优化 (Retina显示)
+   ============================================ */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    /* 为Retina屏幕提供更高清的资源 */
+    .logo-badge img {
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: crisp-edges;
+    }
+}
+
+/* ============================================
+   打印样式优化
+   ============================================ */
+@media print {
+    .hero-section,
+    .search-card,
+    .footer,
+    .action-buttons {
+        display: none;
+    }
+    
+    .center-card {
+        break-inside: avoid;
+        box-shadow: none;
+        border: 1px solid #ddd;
+    }
+    
+    body {
+        background: white;
+        color: black;
+    }
+}
+
+/* ============================================
+   无障碍访问优化
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+    
+    .spinner {
+        animation: none;
+        border: 4px solid #f3f3f3;
+        border-top: 4px solid #0066B3;
+    }
+}
+
+/* 焦点可见性增强 */
+:focus:not(:focus-visible) {
+    outline: none;
+}
+
+:focus-visible {
+    outline: 3px solid #0066B3;
+    outline-offset: 2px;
+    border-radius: 4px;
+}
+        /* ===== CSS重置与基础 ===== */
+        :root {
+            /* 马来西亚主题调色板 */
+            --primary-blue: #0066B3;
+            --primary-red: #CC0000;
+            --primary-yellow: #FFCC00;
+            --primary-white: #FFFFFF;
+            
+            /* 现代渐变 */
+            --gradient-primary: linear-gradient(135deg, #0066B3 0%, #004D99 100%);
+            --gradient-accent: linear-gradient(135deg, #FFCC00 0%, #FFAA00 100%);
+            --gradient-danger: linear-gradient(135deg, #CC0000 0%, #990000 100%);
+            --gradient-success: linear-gradient(135deg, #10B981 0%, #059669 100%);
+            
+            /* 背景渐变 */
+            --bg-gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --bg-gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --bg-gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            
+            /* 玻璃态效果 */
+            --glass-bg: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            
+            /* 阴影 */
+            --shadow-sm: 0 2px 10px rgba(0, 0, 0, 0.08);
+            --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.12);
+            --shadow-lg: 0 20px 50px rgba(0, 0, 0, 0.15);
+            --shadow-xl: 0 30px 60px rgba(0, 0, 0, 0.2);
+            
+            /* 圆角 */
+            --radius-sm: 12px;
+            --radius-md: 20px;
+            --radius-lg: 30px;
+            --radius-xl: 40px;
+            --radius-full: 9999px;
+            
+            /* 动画速度 */
+            --transition-fast: 0.2s ease;
+            --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, 
+                #f8fafc 0%, 
+                #f1f5f9 25%, 
+                #e2e8f0 50%, 
+                #f1f5f9 75%, 
+                #f8fafc 100%);
+            min-height: 100vh;
+            color: #1e293b;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        /* ===== 惊艳的头部动画 ===== */
+        .hero-section {
+            position: relative;
+            overflow: hidden;
+            padding: 80px 20px;
+            background: var(--gradient-primary);
+            border-radius: 0 0 50px 50px;
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+            animation: gradientShift 15s ease infinite;
+            background-size: 400% 400%;
+        }
+        
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(255, 204, 0, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(204, 0, 0, 0.1) 0%, transparent 50%);
+            animation: float 20s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(30px, 30px) rotate(120deg); }
+            66% { transform: translate(-20px, 40px) rotate(240deg); }
+        }
+        
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+        
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 50%;
+            animation: particleFloat 15s linear infinite;
+        }
+        
+        @keyframes particleFloat {
+            0% {
+                transform: translateY(100vh) translateX(0) rotate(0deg);
+                opacity: 0;
+            }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% {
+                transform: translateY(-100px) translateX(100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        /* ===== 主要Logo与标题 ===== */
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 10;
+            animation: fadeInUp 1s ease-out;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            margin-bottom: 60px;
+            flex-wrap: wrap;
+        }
+        
+        .logo-orb {
+            width: 100px;
+            height: 100px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 
+                0 20px 40px rgba(0, 0, 0, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            animation: orbGlow 4s ease-in-out infinite;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        @keyframes orbGlow {
+            0%, 100% { box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.3); }
+            50% { box-shadow: 0 20px 60px rgba(0, 102, 179, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.3); }
+        }
+        
+        .logo-orb img {
+            width: 60px;
+            height: 60px;
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+        }
+        
+        .hero-text {
+            flex: 1;
+        }
+        
+        .hero-title {
+            font-size: 4rem;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 15px;
+            line-height: 1.1;
+            text-shadow: 2px 4px 8px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(to right, white, #ffeaa7, #ffcc00);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: titleGlow 3s ease-in-out infinite;
+        }
+        
+        @keyframes titleGlow {
+            0%, 100% { filter: brightness(1); }
+            50% { filter: brightness(1.2); }
+        }
+        
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 600px;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+        }
+        
+        .hero-stats {
+            display: flex;
+            gap: 40px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .stat-item {
+            text-align: center;
+            animation: statAppear 0.6s ease-out forwards;
+            animation-delay: calc(var(--i) * 0.1s);
+            opacity: 0;
+        }
+        
+        @keyframes statAppear {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary-yellow);
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.8);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        /* ===== 魔法搜索区域 ===== */
+        .search-section {
+            max-width: 800px;
+            margin: -80px auto 80px;
+            position: relative;
+            z-index: 20;
+        }
+        
+        .search-orb {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: var(--radius-xl);
+            padding: 50px;
+            box-shadow: var(--shadow-xl);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transform-style: preserve-3d;
+            transition: var(--transition-slow);
+        }
+        
+        .search-orb:hover {
+            transform: translateY(-10px) rotateX(5deg);
+            box-shadow: 
+                0 40px 80px rgba(0, 0, 0, 0.2),
+                0 0 0 1px rgba(255, 255, 255, 0.3);
+        }
+        
+        .search-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .search-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .search-subtitle {
+            color: #64748b;
+            font-size: 1.1rem;
+        }
+        
+        .search-box {
+            position: relative;
+            margin-bottom: 30px;
+        }
+        
+        .search-input {
+            width: 100%;
+            padding: 25px 30px;
+            font-size: 1.2rem;
+            border: 2px solid #e2e8f0;
+            border-radius: var(--radius-full);
+            background: white;
+            transition: all var(--transition-normal);
+            box-shadow: var(--shadow-md);
+        }
+        .search-input {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.search-input:focus {
+    transform: translateY(-1px);
+    box-shadow: 0 10px 25px rgba(0, 102, 179, 0.15);
+}
+
+.search-btn:active {
+    transform: scale(0.98);
+}
+
+/* 快捷键提示 */
+.keyboard-hint {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.05);
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    color: #64748b;
+    font-family: monospace;
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+css
+    /* ... 所有现有的CSS代码 ... */
+    
+    /* ===== 搜索功能增强样式 ===== */
+    .search-input {
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .search-input:focus {
+        transform: translateY(-1px);
+        box-shadow: 0 10px 25px rgba(0, 102, 179, 0.15);
+    }
+    
+    .search-btn:active {
+        transform: scale(0.98);
+    }
+    
+    .keyboard-hint {
+        position: absolute;
+        right: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(0, 0, 0, 0.05);
+        padding: 4px 8px;
+        border-radius: 6px;
+        font-size: 0.8rem;
+        color: #64748b;
+        font-family: monospace;
+        opacity: 0.7;
+        pointer-events: none;
+    }
+    
+    /* 动画样式（JavaScript需要的） */
+    @keyframes slideUp {
+        from { transform: translateX(-50%) translateY(100px); opacity: 0; }
+        to { transform: translateX(-50%) translateY(0); opacity: 1; }
+    }
+    
+    @keyframes slideDown {
+        from { transform: translateX(-50%) translateY(0); opacity: 1; }
+        to { transform: translateX(-50%) translateY(100px); opacity: 0; }
+    }
+    
+    .searching {
+        border-color: #0066B3 !important;
+        box-shadow: 0 0 0 3px rgba(0, 102, 179, 0.1) !important;
+    }
+    
+    mark {
+        background-color: #ffcc00;
+        color: #000;
+        padding: 2px 4px;
+        border-radius: 3px;
+    }
+    
+    .shortcut-key {
+        display: inline-block;
+        background: rgba(0,0,0,0.1);
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-size: 0.8rem;
+        margin-left: 5px;
+        font-family: monospace;
+    }
+    
+    .center-card:hover {
+        transform: translateY(-5px);
+        transition: transform 0.3s ease;
+    }
+
+         .search-input:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            box-shadow: 
+                0 0 0 4px rgba(0, 102, 179, 0.1),
+                var(--shadow-lg);
+            transform: scale(1.02);
+        }
+        
+        .search-button {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--gradient-primary);
+            color: white;
+            border: none;
+            padding: 18px 40px;
+            border-radius: var(--radius-full);
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: all var(--transition-normal);
+            box-shadow: 0 10px 25px rgba(0, 102, 179, 0.3);
+        }
+        
+        .search-button:hover {
+            transform: translateY(-50%) scale(1.05);
+            box-shadow: 0 15px 35px rgba(0, 102, 179, 0.4);
+        }
+        
+        .search-button:active {
+            transform: translateY(-50%) scale(0.98);
+        }
+        
+        /* ===== 浮动筛选标签 ===== */
+        .filter-clouds {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+        
+        .filter-cloud {
+            background: white;
+            padding: 15px 30px;
+            border-radius: var(--radius-full);
+            cursor: pointer;
+            font-weight: 500;
+            transition: all var(--transition-normal);
+            box-shadow: var(--shadow-md);
+            border: 2px solid transparent;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .filter-cloud::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-primary);
+            transition: var(--transition-normal);
+            z-index: -1;
+        }
+        
+        .filter-cloud:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: var(--shadow-lg);
+            color: white;
+            border-color: var(--primary-blue);
+        }
+        
+        .filter-cloud:hover::before {
+            left: 0;
+        }
+        
+        .filter-cloud:hover i {
+            color: var(--primary-yellow);
+        }
+        
+        .filter-cloud.active {
+            background: var(--gradient-primary);
+            color: white;
+            box-shadow: 0 10px 30px rgba(0, 102, 179, 0.3);
+            animation: cloudPulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes cloudPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        /* ===== 3D卡片效果 ===== */
+        .results-section {
+            max-width: 1400px;
+            margin: 0 auto 100px;
+            padding: 0 20px;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-title {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--primary-blue);
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: var(--gradient-accent);
+            border-radius: 2px;
+        }
+        
+        .section-subtitle {
+            color: #64748b;
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .centers-showcase {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 40px;
+            perspective: 1000px;
+        }
+        
+        .center-crystal {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            transition: all var(--transition-normal);
+            position: relative;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transform-style: preserve-3d;
+        }
+        
+        .center-crystal::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-primary);
+        }
+        
+        .center-crystal:hover {
+            transform: translateY(-20px) rotateX(5deg);
+            box-shadow: 
+                0 40px 80px rgba(0, 0, 0, 0.15),
+                0 0 50px rgba(0, 102, 179, 0.1);
+        }
+        
+        .crystal-header {
+            padding: 35px 35px 25px;
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .crystal-header::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(0, 102, 179, 0.1) 0%, transparent 70%);
+        }
+        
+        .crystal-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .crystal-tags {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .crystal-tag {
+            background: var(--gradient-primary);
+            color: white;
+            padding: 8px 20px;
+            border-radius: var(--radius-full);
+            font-size: 0.9rem;
+            font-weight: 600;
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .crystal-body {
+            padding: 30px 35px;
+        }
+        
+        .crystal-info {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+        
+        .info-petal {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .petal-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: var(--primary-blue);
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .petal-content h4 {
+            font-size: 0.9rem;
+            color: #64748b;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .petal-content p {
+            font-size: 1.1rem;
+            color: #1e293b;
+            font-weight: 600;
+        }
+        
+        .price-gem {
+            background: var(--gradient-success);
+            color: white;
+            padding: 25px;
+            border-radius: var(--radius-lg);
+            text-align: center;
+            margin: 30px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .price-gem::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
+            animation: gemShine 4s linear infinite;
+        }
+        
+        @keyframes gemShine {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .price-amount {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 5px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .price-label {
+            font-size: 1rem;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .rating-orbit {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 20px;
+            background: linear-gradient(135deg, #fff8e1 0%, #ffecb3 100%);
+            border-radius: var(--radius-lg);
+            margin-bottom: 30px;
+        }
+        
+        .stars-constellation {
+            font-size: 1.5rem;
+            color: #FFB74D;
+            letter-spacing: 2px;
+        }
+        
+        .rating-score {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #1e293b;
+        }
+        
+        .crystal-actions {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+        
+        .crystal-btn {
+            padding: 18px;
+            border: none;
+            border-radius: var(--radius-lg);
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all var(--transition-normal);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .detail-btn {
+            background: var(--gradient-primary);
+            color: white;
+            box-shadow: 0 10px 25px rgba(0, 102, 179, 0.3);
+        }
+        
+        .contact-btn {
+            background: white;
+            color: var(--primary-blue);
+            border: 2px solid var(--primary-blue);
+            box-shadow: 0 5px 15px rgba(0, 102, 179, 0.1);
+        }
+        
+        .crystal-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 102, 179, 0.4);
+        }
+        
+        /* ===== 加载动画 ===== */
+        .loading-universe {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 100px 20px;
+        }
+        
+        .universe-container {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 40px;
+        }
+        
+        .orbiting-system {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            animation: universeSpin 10s linear infinite;
+        }
+        
+        @keyframes universeSpin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .orbiting-planet {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            animation: planetOrbit 3s ease-in-out infinite;
+            animation-delay: calc(var(--i) * -1s);
+        }
+        
+        @keyframes planetOrbit {
+            0%, 100% { 
+                transform: rotate(0deg) translateX(80px) rotate(0deg); 
+            }
+            50% { 
+                transform: rotate(180deg) translateX(80px) rotate(-180deg); 
+            }
+        }
+        
+        .central-star {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 40px;
+            height: 40px;
+            background: var(--gradient-accent);
+            border-radius: 50%;
+            animation: starPulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes starPulse {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); }
+            50% { transform: translate(-50%, -50%) scale(1.2); }
+        }
+        
+        .loading-text {
+            font-size: 1.5rem;
+            color: var(--primary-blue);
+            font-weight: 600;
+        }
+        
+        .loading-subtext {
+            color: #64748b;
+            margin-top: 10px;
+        }
+        
+        /* ===== 惊艳底部 ===== */
+        .footer-galaxy {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #cbd5e1;
+            padding: 80px 20px 40px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .footer-galaxy::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--primary-yellow), transparent);
+        }
+        
+        .galaxy-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .galaxy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 50px;
+            margin-bottom: 60px;
+        }
+        
+        .galaxy-column h3 {
+            color: white;
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .galaxy-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: var(--gradient-accent);
+            border-radius: 2px;
+        }
+        
+        .galaxy-links {
+            list-style: none;
+        }
+        
+        .galaxy-links li {
+            margin-bottom: 15px;
+        }
+        
+        .galaxy-links a {
+            color: #94a3b8;
+            text-decoration: none;
+            transition: var(--transition-normal);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .galaxy-links a:hover {
+            color: white;
+            transform: translateX(5px);
+        }
+        
+        .galaxy-links a:hover i {
+            color: var(--primary-yellow);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 40px;
+            border-top: 1px solid #334155;
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+        
+        .malaysia-pride {
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            background: rgba(255, 204, 0, 0.1);
+            padding: 12px 25px;
+            border-radius: var(--radius-full);
+            margin-top: 20px;
+            border: 1px solid rgba(255, 204, 0, 0.2);
+        }
+        
+    .malaysia-flag {
+    font-size: 16px;
+    color: transparent;
+    background: 
+        linear-gradient(90deg, 
+            #0066B3 50%, 
+            transparent 50%),
+        linear-gradient(180deg, 
+            #0066B3 50%, 
+            transparent 50%),
+        repeating-linear-gradient(
+            180deg,
+            #CC0000,
+            #CC0000 7.69%,
+            #FFFFFF 7.69%,
+            #FFFFFF 15.38%
+        );
+    -webkit-background-clip: text;
+    background-clip: text;
+    position: relative;
+    display: inline-block;
+    width: 24px;
+    height: 16px;
+    line-height: 16px;
+    text-align: center;
+}
+
+.malaysia-flag::before {
+    content: '🇲🇾';
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 12px;
+    background: transparent;
+    -webkit-background-clip: initial;
+    background-clip: initial;
+    color: #FFCC00;
+}
+        
+        /* ===== 响应式设计 ===== */
+        @media (max-width: 768px) {
+            .hero-title { font-size: 2.5rem; }
+            .hero-subtitle { font-size: 1.2rem; }
+            .section-title { font-size: 2.2rem; }
+            .search-orb { padding: 30px; }
+            .search-button { position: static; margin-top: 20px; width: 100%; }
+            .centers-showcase { grid-template-columns: 1fr; }
+            .crystal-info { grid-template-columns: 1fr; }
+            .crystal-actions { grid-template-columns: 1fr; }
+        }
+        
+        /* ===== 滚动动画 ===== */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* ===== 货币标签动画 ===== */
+        .currency-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--gradient-accent);
+            color: #1e293b;
+            padding: 8px 20px;
+            border-radius: var(--radius-full);
+            font-weight: 700;
+            animation: currencyBounce 2s ease-in-out infinite;
+        }
+        
+        @keyframes currencyBounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+    </style>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- 惊艳头部 -->
+    <section class="hero-section">
+        <div class="particles" id="particles"></div>
+        <div class="hero-content">
+            <div class="logo-container">
+                <div class="logo-orb">
+                    <img src="https://img.icons8.com/color/96/000000/graduation-cap.png" alt="T4U">
+                </div>
+                <div class="hero-text">
+                    <h1 class="hero-title">T4U Malaysia</h1>
+                    <p class="hero-subtitle">让补习班搜索更智能，更高效</p>
+                </div>
+            </div>
+            
+            <div class="hero-stats">
+                <div class="stat-item" style="--i: 0">
+                    <div class="stat-number" id="statCenters">500+</div>
+                    <div class="stat-label">补习中心</div>
+                </div>
+                <div class="stat-item" style="--i: 1">
+                    <div class="stat-number" id="statSubjects">15+</div>
+                    <div class="stat-label">科目选择</div>
+                </div>
+                <div class="stat-item" style="--i: 2">
+                    <div class="stat-number" id="statStates">13</div>
+                    <div class="stat-label">马来西亚州属</div>
+                </div>
+                <div class="stat-item" style="--i: 3">
+                    <div class="stat-number" id="statRating">4.8</div>
+                    <div class="stat-label">平均评分</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 魔法搜索区域 -->
+    <section class="search-section">
+        <div class="search-orb">
+            <div class="search-header">
+                <h2 class="search-title">
+                    <i class="fas fa-wand-magic-sparkles"></i>
+                    为梦想选择正确的学习道路
+                    <span class="currency-tag">
+                        <i class="fas fa-coins"></i> RM
+                    </span>
+                </h2>
+                <p class="search-subtitle">开始你的搜索之旅</p>
+            </div>
+            
+            <div class="search-box">
+                <input type="text" 
+                       class="search-input" 
+                       id="searchInput" 
+                       placeholder="🎯 例如：吉隆坡数学补习、SPM物理、小学英文..."
+                       autocomplete="off">
+                <button class="search-button" id="searchBtn">
+                    <i class="fas fa-magic"></i>
+                    开始搜索
+                </button>
+            </div>
+            
+            <div class="filter-clouds" id="filterClouds">
+                <!-- 筛选标签通过JS生成 -->
+            </div>
+        </div>
+    </section>
+    
+    <!-- 3D卡片展示区 -->
+    <section class="results-section">
+        <div class="section-header">
+            <h2 class="section-title">✨ 精选补习中心</h2>
+            <p class="section-subtitle">马来西亚各地最受欢迎的高质量补习选择</p>
+        </div>
+        
+        <div class="centers-showcase" id="centersShowcase">
+            <div class="loading-universe">
+                <div class="universe-container">
+                    <div class="orbiting-system">
+                        <div class="orbiting-planet" style="--i: 0"></div>
+                        <div class="orbiting-planet" style="--i: 1"></div>
+                        <div class="orbiting-planet" style="--i: 2"></div>
+                        <div class="orbiting-planet" style="--i: 3"></div>
+                    </div>
+                    <div class="central-star"></div>
+                </div>
+                <p class="loading-text">正在为你寻找最适合的补习班...</p>
+                <p class="loading-subtext">为你的未来，多花一秒钟认真匹配</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 惊艳底部 -->
+    <footer class="footer-galaxy">
+        <div class="galaxy-content">
+            <div class="galaxy-grid">
+                <div class="galaxy-column">
+                    <h3>T4U Malaysia</h3>
+                    <p>T4U 致力于让补习班搜索变得更简单<br>更透明，帮助学生和家长做出更安心<br>的学习选择。</p>
+                    <div class="malaysia-pride">
+                        <div class="malaysia-flag"></div>
+                        <span>支持马来西亚教育</span>
+                    </div>
+                </div>
+                
+                <div class="galaxy-column">
+                    <h3>快速通道</h3>
+                    <ul class="galaxy-links">
+                        <li><a href="#"><i class="fas fa-rocket"></i> 首页</a></li>
+                        <li><a href="#"><i class="fas fa-search"></i> 搜索补习</a></li>
+                        <li><a href="#"><i class="fas fa-plus-circle"></i> 添加中心</a></li>
+                        <li><a href="#"><i class="fas fa-star"></i> 热门推荐</a></li>
+                    </ul>
+                </div>
+                
+                <div class="galaxy-column">
+                    <h3>热门科目</h3>
+                    <ul class="galaxy-links">
+                        <li><a href="#"><i class="fas fa-calculator"></i> 数学</a></li>
+                        <li><a href="#"><i class="fas fa-atom"></i> 科学</a></li>
+                        <li><a href="#"><i class="fas fa-language"></i> 英文</a></li>
+                        <li><a href="#"><i class="fas fa-book"></i> 全科</a></li>
+                    </ul>
+                </div>
+                
+                <div class="galaxy-column">
+                    <h3>联系我们</h3>
+                    <ul class="galaxy-links">
+                        <li><a href="#"><i class="fas fa-envelope"></i> hello@t4umalaysia.com</a></li>
+                        <li><a href="#"><i class="fas fa-phone"></i> +60 12-345 6789</a></li>
+                        <li><a href="#"><i class="fas fa-map-marker-alt"></i> Kuala Lumpur</a></li>
+                        <li><a href="#"><i class="fas fa-clock"></i> 24/7 在线支持</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>© 2024 T4U Malaysia. 保留所有权利。</p>
+                <p>T4U-用科技，为未来铺路</p>
+                <p style="margin-top: 10px; font-size: 0.8rem; opacity: 0.7;">
+                    API: http://127.0.0.1:8000 | 前端: http://localhost:5500
+                </p>
+            </div>
+        </div>
+    </footer>
+
+   <script>
+    // ==================== T4U Malaysia - 增强版搜索功能 ====================
+    
+    // 配置
+    const API_BASE_URL = 'http://127.0.0.1:8000/api';
+    
+    // 应用状态
+    let app = {
+        centers: [],
+        filters: {
+            keyword: '',
+            subject: '全部科目',
+            state: '全部地区'
+        },
+        isLoading: false,
+        lastSearch: ''
+    };
+    
+    // DOM元素
+    const DOM = {
+        searchInput: document.getElementById('searchInput'),
+        searchBtn: document.getElementById('searchBtn'),
+        centersList: document.getElementById('centersList'),
+        resultsCount: document.getElementById('resultsCount'),
+        quickFilters: document.getElementById('quickFilters')
+    };
+    
+    // 键盘快捷键映射
+    const KEYBOARD_SHORTCUTS = {
+        'Enter': '搜索',           // 回车键搜索
+        'Escape': '清空搜索框',    // ESC清空
+        '/': '聚焦搜索框',        // 斜杠键聚焦
+        '1': '数学筛选',          // 数字1筛选数学
+        '2': '英文筛选',          // 数字2筛选英文
+        '3': '科学筛选',          // 数字3筛选科学
+        '4': '全科筛选',          // 数字4筛选全科
+        'r': '重新加载',          // R键重新加载
+        '?': '显示帮助'           // 问号显示帮助
+    };
+    
+    // 初始化
+    async function init() {
+        console.log('🚀 T4U Malaysia 启动中...');
+        
+        // 1. 绑定事件监听器
+        bindEventListeners();
+        
+        // 2. 初始化快速筛选按钮
+        initQuickFilters();
+        
+        // 3. 加载上次的搜索记录（如果有）
+        loadLastSearch();
+        
+        // 4. 自动聚焦搜索框
+        autoFocusSearch();
+        
+        // 5. 加载数据
+        await loadCenters();
+        
+        // 6. 显示快捷键提示
+        showShortcutHint();
+    }
+    
+    // 绑定事件监听器
+    function bindEventListeners() {
+        // 搜索按钮点击
+        DOM.searchBtn.addEventListener('click', performSearch);
+        
+        // 搜索框事件
+        DOM.searchInput.addEventListener('keypress', handleSearchKeyPress);
+        DOM.searchInput.addEventListener('keydown', handleSearchKeyDown);
+        DOM.searchInput.addEventListener('input', handleSearchInput);
+        
+        // 全局键盘快捷键
+        document.addEventListener('keydown', handleGlobalShortcuts);
+        
+        // 页面可见性变化（返回页面时自动刷新）
+        document.addEventListener('visibilitychange', () => {
+            if (!document.hidden) {
+                console.log('页面重新激活，刷新数据...');
+                loadCenters();
+            }
+        });
+    }
+    
+    // 处理搜索框按键
+    function handleSearchKeyPress(e) {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            performSearch();
+        }
+    }
+    
+    // 处理搜索框特殊按键
+    function handleSearchKeyDown(e) {
+        // ESC键清空搜索框
+        if (e.key === 'Escape') {
+            DOM.searchInput.value = '';
+            DOM.searchInput.focus();
+            app.filters.keyword = '';
+            loadCenters();
+        }
+        
+        // 斜杠键聚焦搜索框（除非已经在搜索框中）
+        if (e.key === '/' && document.activeElement !== DOM.searchInput) {
+            e.preventDefault();
+            DOM.searchInput.focus();
+            showToast('输入关键字后按 Enter 搜索', 'info');
+        }
+    }
+    
+    // 处理搜索框输入（实时搜索）
+    let searchTimeout;
+    function handleSearchInput() {
+        clearTimeout(searchTimeout);
+        
+        // 显示搜索中的动画
+        DOM.searchInput.classList.add('searching');
+        
+        // 防抖处理：300ms后自动搜索
+        searchTimeout = setTimeout(() => {
+            const keyword = DOM.searchInput.value.trim();
+            if (keyword !== app.filters.keyword) {
+                app.filters.keyword = keyword;
+                saveSearchHistory(keyword);
+                performSearch();
+            }
+            DOM.searchInput.classList.remove('searching');
+        }, 300);
+    }
+    
+    // 处理全局快捷键
+    function handleGlobalShortcuts(e) {
+        // 忽略输入框中的快捷键（除了全局快捷键）
+        if (document.activeElement.tagName === 'INPUT' || 
+            document.activeElement.tagName === 'TEXTAREA') {
+            return;
+        }
+        
+        const key = e.key.toLowerCase();
+        
+        switch(key) {
+            case '/':  // 聚焦搜索框
+                e.preventDefault();
+                DOM.searchInput.focus();
+                showToast('搜索框已聚焦，开始输入关键词', 'info');
+                break;
+                
+            case 'r':  // 重新加载
+                if (e.ctrlKey || e.metaKey) {
+                    e.preventDefault();
+                    loadCenters();
+                    showToast('正在重新加载数据...', 'info');
+                }
+                break;
+                
+            case '?':  // 显示帮助
+                e.preventDefault();
+                showKeyboardShortcuts();
+                break;
+                
+            case '1':  // 快速筛选：数学
+                e.preventDefault();
+                filterBySubject('数学');
+                break;
+                
+            case '2':  // 快速筛选：英文
+                e.preventDefault();
+                filterBySubject('英文');
+                break;
+                
+            case '3':  // 快速筛选：科学
+                e.preventDefault();
+                filterBySubject('科学');
+                break;
+                
+            case '4':  // 快速筛选：全科
+                e.preventDefault();
+                filterBySubject('全科');
+                break;
+                
+            case 'escape':  // 清空所有筛选
+                if (app.filters.keyword || app.filters.subject !== '全部科目' || app.filters.state !== '全部地区') {
+                    e.preventDefault();
+                    resetFilters();
+                    showToast('已清空所有筛选条件', 'success');
+                }
+                break;
+        }
+    }
+    
+    // 初始化快速筛选按钮
+    function initQuickFilters() {
+        const filters = [
+            { icon: 'fas fa-calculator', text: '数学', subject: '数学', key: '1' },
+            { icon: 'fas fa-language', text: '英文', subject: '英文', key: '2' },
+            { icon: 'fas fa-atom', text: '科学', subject: '科学', key: '3' },
+            { icon: 'fas fa-book', text: '全科', subject: '全科', key: '4' },
+            { icon: 'fas fa-map-marker-alt', text: '吉隆坡', state: '吉隆坡' },
+            { icon: 'fas fa-money-bill-wave', text: '低于 RM60', action: 'filterByPrice', price: 60 }
+        ];
+        
+        DOM.quickFilters.innerHTML = '';
+        
+        filters.forEach(filter => {
+            const button = document.createElement('button');
+            button.className = 'filter-tag';
+            button.innerHTML = `<i class="${filter.icon}"></i> ${filter.text}`;
+            
+            if (filter.key) {
+                button.innerHTML += ` <span class="shortcut-key">${filter.key}</span>`;
+            }
+            
+            button.addEventListener('click', () => {
+                if (filter.subject) {
+                    filterBySubject(filter.subject);
+                } else if (filter.state) {
+                    filterByState(filter.state);
+                } else if (filter.action === 'filterByPrice') {
+                    filterByPrice(filter.price);
+                }
+            });
+            
+            DOM.quickFilters.appendChild(button);
+        });
+    }
+    
+    // 按科目筛选
+    function filterBySubject(subject) {
+        app.filters.subject = subject;
+        app.filters.state = '全部地区';
+        
+        // 更新UI
+        updateFilterButtons('subject', subject);
+        performSearch();
+        
+        showToast(`已筛选: ${subject}`, 'success');
+    }
+    
+    // 按州属筛选
+    function filterByState(state) {
+        app.filters.state = state;
+        app.filters.subject = '全部科目';
+        
+        // 更新UI
+        updateFilterButtons('state', state);
+        performSearch();
+        
+        showToast(`已筛选: ${state}`, 'success');
+    }
+    
+    // 按价格筛选
+    function filterByPrice(maxPrice) {
+        // 这里可以扩展为更复杂的价格筛选
+        showToast(`价格筛选: 低于 RM${maxPrice}`, 'info');
+        // 实际筛选需要后端支持
+    }
+    
+    // 更新筛选按钮状态
+    function updateFilterButtons(type, value) {
+        document.querySelectorAll('.filter-tag').forEach(btn => {
+            btn.classList.remove('active');
+        });
+        
+        // 找到对应的按钮并激活
+        const activeBtn = Array.from(document.querySelectorAll('.filter-tag')).find(btn => {
+            const text = btn.textContent.replace(/[0-9]/g, '').trim();
+            return text.includes(value);
+        });
+        
+        if (activeBtn) {
+            activeBtn.classList.add('active');
+        }
+    }
+    
+    // 加载上次搜索记录
+    function loadLastSearch() {
+        const lastSearch = localStorage.getItem('t4u_last_search');
+        if (lastSearch) {
+            DOM.searchInput.value = lastSearch;
+            app.filters.keyword = lastSearch;
+        }
+    }
+    
+    // 保存搜索历史
+    function saveSearchHistory(keyword) {
+        if (keyword.trim()) {
+            localStorage.setItem('t4u_last_search', keyword);
+            
+            // 保存到搜索历史列表（最多10条）
+            let history = JSON.parse(localStorage.getItem('t4u_search_history') || '[]');
+            history = history.filter(item => item !== keyword);
+            history.unshift(keyword);
+            history = history.slice(0, 10);
+            localStorage.setItem('t4u_search_history', JSON.stringify(history));
+        }
+    }
+    
+    // 自动聚焦搜索框
+    function autoFocusSearch() {
+        setTimeout(() => {
+            DOM.searchInput.focus();
+        }, 500);
+    }
+    
+    // 执行搜索
+    async function performSearch() {
+        try {
+            app.filters.keyword = DOM.searchInput.value.trim();
+            showLoading();
+            
+            // 保存搜索记录
+            saveSearchHistory(app.filters.keyword);
+            
+            // 构建查询参数
+            const params = new URLSearchParams();
+            if (app.filters.keyword) params.append('keyword', app.filters.keyword);
+            if (app.filters.subject !== '全部科目') params.append('subject', app.filters.subject);
+            if (app.filters.state !== '全部地区') params.append('state', app.filters.state);
+            
+            // 显示搜索中的动画
+            DOM.searchBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> 搜索中...';
+            DOM.searchBtn.disabled = true;
+            
+            const response = await fetch(`${API_BASE_URL}/search?${params.toString()}`);
+            const data = await response.json();
+            
+            // 恢复按钮状态
+            DOM.searchBtn.innerHTML = '<i class="fas fa-search"></i> 搜索';
+            DOM.searchBtn.disabled = false;
+            
+            if (data.success) {
+                app.centers = data.results || [];
+                displayCenters(app.centers);
+                
+                // 更新结果计数
+                let countText = `找到 ${app.centers.length} 个结果`;
+                if (app.filters.keyword) countText += ` • 关键词: "${app.filters.keyword}"`;
+                if (app.filters.subject !== '全部科目') countText += ` • 科目: ${app.filters.subject}`;
+                if (app.filters.state !== '全部地区') countText += ` • 地区: ${app.filters.state}`;
+                
+                DOM.resultsCount.textContent = countText;
+                
+                // 显示搜索成功的提示
+                if (app.filters.keyword && app.centers.length > 0) {
+                    showToast(`找到 ${app.centers.length} 个相关结果`, 'success');
+                }
+                
+            } else {
+                throw new Error(data.message || '搜索失败');
+            }
+            
+        } catch (error) {
+            console.error('搜索失败:', error);
+            
+            // 恢复按钮状态
+            DOM.searchBtn.innerHTML = '<i class="fas fa-search"></i> 搜索';
+            DOM.searchBtn.disabled = false;
+            
+            showError('搜索失败: ' + error.message);
+            DOM.resultsCount.textContent = '搜索失败';
+        }
+    }
+    
+    // 加载补习中心
+    async function loadCenters() {
+        try {
+            showLoading();
+            
+            const response = await fetch(`${API_BASE_URL}/centers`);
+            
+            if (!response.ok) {
+                throw new Error(`HTTP ${response.status}`);
+            }
+            
+            const data = await response.json();
+            
+            if (data.success) {
+                app.centers = data.centers || [];
+                displayCenters(app.centers);
+                DOM.resultsCount.textContent = `找到 ${app.centers.length} 个补习中心`;
+            } else {
+                throw new Error(data.message || '数据加载失败');
+            }
+            
+        } catch (error) {
+            console.error('加载失败:', error);
+            showError('无法连接到服务器。请确保后端正在运行。');
+        }
+    }
+    
+    // 显示加载中
+    function showLoading() {
+        DOM.centersList.innerHTML = `
+            <div class="loading-container">
+                <div class="spinner"></div>
+                <p class="loading-text">正在搜索马来西亚各地的补习班...</p>
+            </div>
+        `;
+        app.isLoading = true;
+    }
+    
+    // 显示错误
+    function showError(message) {
+        DOM.centersList.innerHTML = `
+            <div class="error-container">
+                <div class="error-icon">
+                    <i class="fas fa-exclamation-triangle"></i>
+                </div>
+                <h3 class="error-title">哎呀，出错了</h3>
+                <p class="error-message">${message}</p>
+                <div style="margin-top: 20px; display: flex; gap: 10px; justify-content: center;">
+                    <button class="retry-btn" onclick="loadCenters()">
+                        <i class="fas fa-redo"></i> 重新加载
+                    </button>
+                    <button class="retry-btn" onclick="testConnection()" style="background: #6b7280;">
+                        <i class="fas fa-wifi"></i> 测试连接
+                    </button>
+                </div>
+            </div>
+        `;
+        DOM.resultsCount.textContent = '连接错误';
+    }
+    
+    // 显示空状态
+    function showEmpty() {
+        DOM.centersList.innerHTML = `
+            <div class="empty-state">
+                <div class="empty-icon">
+                    <i class="fas fa-search"></i>
+                </div>
+                <h3 class="empty-title">没有找到补习班</h3>
+                <p class="empty-message">尝试修改搜索关键词或筛选条件</p>
+                <div style="margin-top: 20px; display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+                    <button class="filter-tag" onclick="resetFilters()">
+                        <i class="fas fa-redo"></i> 重置筛选
+                    </button>
+                    <button class="filter-tag" onclick="DOM.searchInput.focus()">
+                        <i class="fas fa-edit"></i> 修改搜索词
+                    </button>
+                </div>
+            </div>
+        `;
+    }
+    
+    // 显示补习中心
+    function displayCenters(centers) {
+        if (!centers || centers.length === 0) {
+            showEmpty();
+            return;
+        }
+        
+        let html = '';
+        
+        centers.forEach(center => {
+            // 生成星级
+            const stars = '★'.repeat(Math.floor(center.rating)) + 
+                          '☆'.repeat(5 - Math.floor(center.rating));
+            
+            // 高亮搜索关键词
+            let highlightedName = center.name;
+            let highlightedDescription = center.description || '';
+            
+            if (app.filters.keyword) {
+                const regex = new RegExp(`(${app.filters.keyword})`, 'gi');
+                highlightedName = center.name.replace(regex, '<mark>$1</mark>');
+                highlightedDescription = (center.description || '').replace(regex, '<mark>$1</mark>');
+            }
+            
+            html += `
+                <div class="center-card">
+                    <div class="card-top">
+                        <div class="card-header">
+                            <h3 class="card-title">${highlightedName}</h3>
+                            <span class="subject-badge">${center.subject}</span>
+                        </div>
+                        <div class="card-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>${center.city}, ${center.state}</span>
+                        </div>
+                    </div>
+                    
+                    <div class="card-middle">
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <div class="info-icon">
+                                    <i class="fas fa-user-graduate"></i>
+                                </div>
+                                <div class="info-content">
+                                    <strong>年级:</strong><br>
+                                    ${center.grade || 'Tingkatan 1-5'}
+                                </div>
+                            </div>
+                            
+                            <div class="info-item">
+                                <div class="info-icon">
+                                    <i class="fas fa-walking"></i>
+                                </div>
+                                <div class="info-content">
+                                    <strong>距离:</strong><br>
+                                    ${center.distance}
+                                </div>
+                            </div>
+                        </div>
+                        
+                        ${center.description ? `
+                        <div style="margin: 15px 0; padding: 12px; background: #f8f9fa; border-radius: 8px; color: #555; font-size: 0.95rem;">
+                            <i class="fas fa-quote-left" style="color: #0066B3; margin-right: 5px;"></i>
+                            ${highlightedDescription}
+                        </div>` : ''}
+                        
+                        <div class="price-tag">
+                            <i class="fas fa-money-bill-wave"></i> ${center.price}
+                        </div>
+                        
+                        <div class="rating-container">
+                            <div class="stars">${stars}</div>
+                            <div class="rating-text">${center.rating}/5</div>
+                            ${center.phone ? `
+                            <div style="margin-left: auto; color: #64748b;">
+                                <i class="fas fa-phone"></i> ${center.phone}
+                            </div>` : ''}
+                        </div>
+                    </div>
+                    
+                    <div class="card-bottom">
+                        <div class="action-buttons">
+                            <button class="action-btn detail-btn" onclick="viewCenter(${center.id})">
+                                <i class="fas fa-info-circle"></i>
+                                详情
+                            </button>
+                            <button class="action-btn contact-btn" onclick="contactCenter(${center.id})">
+                                <i class="fas fa-phone"></i>
+                                联系
+                            </button>
+                            <button class="action-btn" onclick="shareCenter(${center.id})" style="background: #8b5cf6; color: white;">
+                                <i class="fas fa-share"></i>
+                                分享
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        });
+        
+        DOM.centersList.innerHTML = html;
+    }
+    
+    // 重置筛选
+    function resetFilters() {
+        app.filters = {
+            keyword: '',
+            subject: '全部科目',
+            state: '全部地区'
+        };
+        
+        DOM.searchInput.value = '';
+        document.querySelectorAll('.filter-tag').forEach(btn => {
+            btn.classList.remove('active');
+        });
+        
+        loadCenters();
+        showToast('已重置所有筛选条件', 'success');
+    }
+    
+    // 查看详情
+    async function viewCenter(centerId) {
+        try {
+            const response = await fetch(`${API_BASE_URL}/center/${centerId}`);
+            const data = await response.json();
+            
+            if (data.success) {
+                const center = data.center;
+                const detailHtml = `
+                    <div style="text-align: left; max-width: 400px;">
+                        <h3 style="color: #0066B3; margin-bottom: 15px;">${center.name}</h3>
+                        <p><strong>科目:</strong> ${center.subject}</p>
+                        <p><strong>地址:</strong> ${center.address}, ${center.city}</p>
+                        <p><strong>价格:</strong> ${center.price}</p>
+                        <p><strong>评分:</strong> ${center.rating}/5</p>
+                        <p><strong>距离:</strong> ${center.distance}</p>
+                        ${center.phone ? `<p><strong>电话:</strong> ${center.phone}</p>` : ''}
+                        ${center.operating_hours ? `<p><strong>营业时间:</strong> ${center.operating_hours}</p>` : ''}
+                        ${center.description ? `<p style="margin-top: 15px; color: #666;">${center.description}</p>` : ''}
+                    </div>
+                `;
+                
+                alert(`📚 补习中心详情\n\n${detailHtml}`);
+            }
+        } catch (error) {
+            alert('无法获取详情');
+        }
+    }
+    
+    // 联系补习中心
+    function contactCenter(centerId) {
+        const center = app.centers.find(c => c.id === centerId);
+        if (center) {
+            const message = `联系 ${center.name}\n\n` +
+                          `科目: ${center.subject}\n` +
+                          `电话: ${center.phone || '请联系获取电话号码'}\n` +
+                          `地址: ${center.address}, ${center.city}\n` +
+                          `建议联系时间: ${center.operating_hours || '工作日 4pm-9pm'}`;
+            alert(message);
+        }
+    }
+    
+    // 分享补习中心
+    function shareCenter(centerId) {
+        const center = app.centers.find(c => c.id === centerId);
+        if (center && navigator.share) {
+            navigator.share({
+                title: `${center.name} - T4U Malaysia`,
+                text: `发现一个不错的补习中心：${center.name} (${center.subject}) - ${center.price}`,
+                url: window.location.href
+            });
+        } else {
+            // 复制到剪贴板
+            const text = `${center.name}\n科目: ${center.subject}\n价格: ${center.price}\n地址: ${center.address}\n来自 T4U Malaysia`;
+            navigator.clipboard.writeText(text);
+            showToast('已复制到剪贴板', 'success');
+        }
+    }
+    
+    // 显示快捷键提示
+    function showShortcutHint() {
+        // 只在首次访问时显示
+        if (!localStorage.getItem('t4u_shortcut_shown')) {
+            setTimeout(() => {
+                showToast('💡 提示: 按 / 键快速搜索，按 ? 键查看所有快捷键', 'info', 5000);
+                localStorage.setItem('t4u_shortcut_shown', 'true');
+            }, 2000);
+        }
+    }
+    
+    // 显示键盘快捷键帮助
+    function showKeyboardShortcuts() {
+        const shortcuts = `
+            <div style="text-align: left; max-width: 400px;">
+                <h3 style="color: #0066B3; margin-bottom: 15px;">🎮 键盘快捷键</h3>
+                ${Object.entries(KEYBOARD_SHORTCUTS).map(([key, desc]) => `
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 8px; padding: 8px; background: #f8fafc; border-radius: 6px;">
+                        <span style="font-weight: 600;">${key}</span>
+                        <span style="color: #64748b;">${desc}</span>
+                    </div>
+                `).join('')}
+                <p style="margin-top: 15px; color: #666; font-size: 0.9rem;">
+                    💡 提示：在任意页面按对应键即可使用快捷键
+                </p>
+            </div>
+        `;
+        
+        alert(shortcuts);
+    }
+    
+    // 显示Toast通知
+    function showToast(message, type = 'info', duration = 3000) {
+        // 移除现有的toast
+        const existingToast = document.querySelector('.toast-notification');
+        if (existingToast) existingToast.remove();
+        
+        // 创建toast
+        const toast = document.createElement('div');
+        toast.className = `toast-notification toast-${type}`;
+        toast.innerHTML = `
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-circle' : 'info-circle'}"></i>
+                <span>${message}</span>
+            </div>
+            <button onclick="this.parentElement.remove()" style="background: none; border: none; color: inherit; cursor: pointer;">
+                <i class="fas fa-times"></i>
+            </button>
+        `;
+        
+        // 添加样式
+        toast.style.cssText = `
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: ${type === 'success' ? '#10b981' : type === 'error' ? '#ef4444' : '#3b82f6'};
+            color: white;
+            padding: 15px 20px;
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            z-index: 10000;
+            animation: slideUp 0.3s ease;
+            min-width: 300px;
+            max-width: 90vw;
+        `;
+        
+        document.body.appendChild(toast);
+        
+        // 自动移除
+        setTimeout(() => {
+            if (toast.parentElement) {
+                toast.style.animation = 'slideDown 0.3s ease';
+                setTimeout(() => toast.remove(), 300);
+            }
+        }, duration);
+    }
+    
+    // 测试连接
+    async function testConnection() {
+        try {
+            showToast('正在测试连接...', 'info');
+            const response = await fetch(`${API_BASE_URL}/health`);
+            const data = await response.json();
+            showToast(`连接成功！状态: ${data.status}`, 'success');
+        } catch (error) {
+            showToast('连接失败，请检查后端服务器', 'error');
+        }
+    }
+    
+    // 页面加载完成后启动
+    document.addEventListener('DOMContentLoaded', init);
+    
+    // 全局函数
+    window.resetFilters = resetFilters;
+    window.viewCenter = viewCenter;
+    window.contactCenter = contactCenter;
+    window.shareCenter = shareCenter;
+    window.testConnection = testConnection;
+    
+    // 添加CSS动画
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes slideUp {
+            from { transform: translateX(-50%) translateY(100px); opacity: 0; }
+            to { transform: translateX(-50%) translateY(0); opacity: 1; }
+        }
+        
+        @keyframes slideDown {
+            from { transform: translateX(-50%) translateY(0); opacity: 1; }
+            to { transform: translateX(-50%) translateY(100px); opacity: 0; }
+        }
+        
+        .searching {
+            border-color: #0066B3 !important;
+            box-shadow: 0 0 0 3px rgba(0, 102, 179, 0.1) !important;
+        }
+        
+        mark {
+            background-color: #ffcc00;
+            color: #000;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+        
+        .shortcut-key {
+            display: inline-block;
+            background: rgba(0,0,0,0.1);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            margin-left: 5px;
+            font-family: monospace;
+        }
+        
+        .center-card:hover {
+            transform: translateY(-5px);
+            transition: transform 0.3s ease;
+        }
+    `;
+    document.head.appendChild(style);
+    // ==================== 客服系统功能 ====================
+
+let currentCenterData = null;
+
+// 打开WhatsApp客服模态框
+function openWhatsAppModal(centerData = null) {
+    currentCenterData = centerData;
+    
+    // 如果传入了补习中心数据，显示在模态框中
+    if (centerData) {
+        const centerInfo = `
+            <h4>${centerData.name}</h4>
+            <p style="margin: 5px 0; color: #666;">
+                <i class="fas fa-book"></i> ${centerData.subject} | 
+                <i class="fas fa-map-marker-alt"></i> ${centerData.city}
+            </p>
+            <p style="margin: 5px 0; color: #666;">
+                <i class="fas fa-money-bill-wave"></i> ${centerData.price}
+            </p>
+        `;
+        document.getElementById('selectedCenterInfo').innerHTML = centerInfo;
+    } else {
+        document.getElementById('selectedCenterInfo').innerHTML = 
+            '<p style="color: #666; text-align: center;">请联系我们了解更多信息</p>';
+    }
+    
+    document.getElementById('whatsappModal').style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+}
+
+// 关闭WhatsApp客服模态框
+function closeWhatsAppModal() {
+    document.getElementById('whatsappModal').style.display = 'none';
+    document.body.style.overflow = 'auto';
+    resetWhatsAppForm();
+}
+
+// 重置表单
+function resetWhatsAppForm() {
+    document.getElementById('whatsappForm').reset();
+    currentCenterData = null;
+}
+
+// 打开通用WhatsApp
+function openGeneralWhatsApp() {
+    openWhatsAppModal();
+}
+
+// 从卡片打开客服
+function contactCenter(centerId) {
+    const center = app.centers.find(c => c.id === centerId);
+    if (center) {
+        openWhatsAppModal(center);
+    } else {
+        openGeneralWhatsApp();
+    }
+}
+
+// WhatsApp表单提交
+document.getElementById('whatsappForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const studentName = document.getElementById('studentName').value;
+    const studentGrade = document.getElementById('studentGrade').value;
+    const contactNumber = document.getElementById('contactNumber').value;
+    const preferredTime = document.getElementById('preferredTime').value;
+    const studentMessage = document.getElementById('studentMessage').value;
+    
+    // 构建WhatsApp消息
+    let whatsappMessage = `你好，我想咨询补习班详情：\n\n`;
+    whatsappMessage += `📝 *学生信息*\n`;
+    whatsappMessage += `姓名: ${studentName}\n`;
+    whatsappMessage += `年级: ${studentGrade}\n`;
+    whatsappMessage += `电话: ${contactNumber}\n`;
+    
+    if (preferredTime) {
+        whatsappMessage += `偏好时间: ${preferredTime}\n`;
+    }
+    
+    if (currentCenterData) {
+        whatsappMessage += `\n🏫 *咨询的补习中心*\n`;
+        whatsappMessage += `名称: ${currentCenterData.name}\n`;
+        whatsappMessage += `科目: ${currentCenterData.subject}\n`;
+        whatsappMessage += `地区: ${currentCenterData.city}\n`;
+    }
+    
+    whatsappMessage += `\n💬 *咨询内容*\n${studentMessage}\n\n`;
+    whatsappMessage += `---\n*来自 T4U Malaysia 客服系统*`;
+    
+    // 编码消息
+    const encodedMessage = encodeURIComponent(whatsappMessage);
+    
+    // 默认的客服电话号码（可以替换为实际的号码）
+    const whatsappNumber = '60123456789'; // 请替换为实际的客服号码
+    
+    // 打开WhatsApp
+    window.open(`https://wa.me/${whatsappNumber}?text=${encodedMessage}`, '_blank');
+    
+    // 显示成功消息
+    showToast('正在跳转到 WhatsApp...', 'success');
+    
+    // 关闭模态框
+    setTimeout(() => {
+        closeWhatsAppModal();
+    }, 1500);
+});
+
+// ==================== 导航功能 ====================
+
+// 切换菜单显示/隐藏
+function toggleMenu() {
+    const menuIcon = document.querySelector('.hamburger-icon');
+    const menuOverlay = document.querySelector('.menu-overlay');
+    const menuContent = document.querySelector('.menu-content');
+    
+    menuIcon.classList.toggle('active');
+    menuOverlay.classList.toggle('active');
+    menuContent.classList.toggle('active');
+}
+
+// 页面导航
+function navigateTo(page) {
+    // 更新菜单和导航激活状态
+    document.querySelectorAll('.menu-item, .nav-item').forEach(item => {
+        item.classList.remove('active');
+    });
+    
+    document.querySelector(`[href="#${page}"]`).classList.add('active');
+    
+    // 根据页面显示不同内容
+    switch(page) {
+        case 'home':
+            // 显示主页内容（现有内容）
+            document.querySelector('.page-container').innerHTML = document.querySelector('.hero-section').parentNode.innerHTML;
+            break;
+            
+        case 'community':
+            showCommunityPage();
+            break;
+            
+        case 'explore':
+            showExplorePage();
+            break;
+            
+        case 'profile':
+            showProfilePage();
+            break;
+            
+        case 'about':
+            showAboutPage();
+            break;
+    }
+    
+    // 关闭菜单
+    toggleMenu();
+}
+
+// 社区页面
+function showCommunityPage() {
+    const communityHTML = `
+        <div class="page-content">
+            <section class="hero-section" style="border-radius: 0 0 30px 30px;">
+                <div class="hero-content">
+                    <h1 class="hero-title" style="font-size: 2.5rem;">学习社区</h1>
+                    <p class="hero-subtitle">与其他学生交流经验，分享学习心得</p>
+                </div>
+            </section>
+            
+            <section class="results-section">
+                <div class="section-header">
+                    <h2 class="section-title">📚 热门讨论</h2>
+                    <p class="section-subtitle">加入讨论，获取学习建议</p>
+                </div>
+                
+                <div class="community-grid">
+                    <!-- 社区内容会在这里动态生成 -->
+                </div>
+                
+                <div class="create-post">
+                    <textarea placeholder="分享你的学习经验或问题..." rows="3"></textarea>
+                    <button class="search-button" onclick="createPost()">
+                        <i class="fas fa-paper-plane"></i> 发布讨论
+                    </button>
+                </div>
+            </section>
+        </div>
+    `;
+    
+    document.querySelector('.page-container').innerHTML = communityHTML;
+    loadCommunityPosts();
+}
+
+// 探索页面
+function showExplorePage() {
+    const exploreHTML = `
+        <div class="page-content">
+            <section class="hero-section" style="border-radius: 0 0 30px 30px; background: var(--bg-gradient-1);">
+                <div class="hero-content">
+                    <h1 class="hero-title" style="font-size: 2.5rem;">探索发现</h1>
+                    <p class="hero-subtitle">发现新的学习方法和优质资源</p>
+                </div>
+            </section>
+            
+            <section class="results-section">
+                <div class="section-header">
+                    <h2 class="section-title">🔍 学习资源</h2>
+                    <p class="section-subtitle">精选学习材料和工具推荐</p>
+                </div>
+                
+                <div class="explore-grid">
+                    <div class="explore-card">
+                        <div class="explore-icon" style="background: var(--gradient-primary);">
+                            <i class="fas fa-video"></i>
+                        </div>
+                        <h3>教学视频</h3>
+                        <p>免费在线教学视频</p>
+                    </div>
+                    
+                    <div class="explore-card">
+                        <div class="explore-icon" style="background: var(--gradient-success);">
+                            <i class="fas fa-file-pdf"></i>
+                        </div>
+                        <h3>练习试卷</h3>
+                        <p>历年考试试卷下载</p>
+                    </div>
+                    
+                    <div class="explore-card">
+                        <div class="explore-icon" style="background: var(--gradient-danger);">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3>学习分析</h3>
+                        <p>个人学习进度跟踪</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    `;
+    
+    document.querySelector('.page-container').innerHTML = exploreHTML;
+}
+
+// 个人页面
+function showProfilePage() {
+    const profileHTML = `
+        <div class="page-content">
+            <section class="hero-section" style="border-radius: 0 0 30px 30px; background: var(--gradient-success);">
+                <div class="hero-content">
+                    <div class="profile-header">
+                        <div class="profile-avatar">
+                            <i class="fas fa-user-graduate"></i>
+                        </div>
+                        <div class="profile-info">
+                            <h1 class="hero-title" style="font-size: 2rem; margin-bottom: 5px;">用户资料</h1>
+                            <p class="hero-subtitle">管理您的学习记录和偏好</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="results-section">
+                <div class="profile-stats">
+                    <div class="stat-card">
+                        <div class="stat-number">12</div>
+                        <div class="stat-label">已咨询</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">5</div>
+                        <div class="stat-label">已收藏</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">8</div>
+                        <div class="stat-label">学习小时</div>
+                    </div>
+                </div>
+                
+                <div class="profile-sections">
+                    <div class="section-card">
+                        <h3><i class="fas fa-history"></i> 最近浏览</h3>
+                        <p>查看您最近查看的补习中心</p>
+                    </div>
+                    
+                    <div class="section-card">
+                        <h3><i class="fas fa-heart"></i> 我的收藏</h3>
+                        <p>管理您收藏的补习中心</p>
+                    </div>
+                    
+                    <div class="section-card">
+                        <h3><i class="fas fa-cog"></i> 账户设置</h3>
+                        <p>修改个人资料和偏好设置</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    `;
+    
+    document.querySelector('.page-container').innerHTML = profileHTML;
+}
+
+// 关于我们页面
+function showAboutPage() {
+    const aboutHTML = `
+        <div class="page-content">
+            <section class="hero-section" style="border-radius: 0 0 30px 30px; background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);">
+                <div class="hero-content">
+                    <h1 class="hero-title" style="font-size: 2.5rem;">关于 T4U</h1>
+                    <p class="hero-subtitle">让补习班搜索更智能，更高效</p>
+                </div>
+            </section>
+            
+            <section class="results-section" style="padding: 40px 20px;">
+                <div class="about-container">
+                    <div class="about-card">
+                        <div class="about-icon">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <h2>我们的使命</h2>
+                        <p>让马来西亚的学生和家长能够轻松找到最适合的补习班，提供透明、全面的信息，帮助每个人做出明智的学习选择。</p>
+                    </div>
+                    
+                    <div class="about-card">
+                        <div class="about-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <h2>我们的优势</h2>
+                        <ul style="text-align: left; padding-left: 20px; margin-top: 15px;">
+                            <li>✅ 500+ 认证补习中心</li>
+                            <li>✅ 真实用户评价系统</li>
+                            <li>✅ 智能匹配算法</li>
+                            <li>✅ 透明的价格信息</li>
+                            <li>✅ 24/7 客服支持</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="about-card">
+                        <div class="about-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h2>团队介绍</h2>
+                        <p>我们是一支来自马来西亚的教育科技团队，由前教师、教育专家和科技爱好者组成，致力于改善马来西亚的教育体验。</p>
+                    </div>
+                    
+                    <div class="about-card">
+                        <div class="about-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <h2>服务范围</h2>
+                        <p>覆盖马来西亚13个州属，包括：吉隆坡、雪兰莪、槟城、柔佛、马六甲、森美兰、霹雳、吉打、登嘉楼、吉兰丹、彭亨、砂拉越、沙巴。</p>
+                    </div>
+                    
+                    <div class="about-card full-width">
+                        <h2 style="color: var(--primary-blue);">联系方式</h2>
+                        <div class="contact-info">
+                            <div class="contact-item">
+                                <i class="fas fa-envelope"></i>
+                                <div>
+                                    <strong>电子邮件</strong>
+                                    <p>hello@t4umalaysia.com</p>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <i class="fas fa-phone"></i>
+                                <div>
+                                    <strong>客服热线</strong>
+                                    <p>+60 12-345 6789</p>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <i class="fas fa-clock"></i>
+                                <div>
+                                    <strong>服务时间</strong>
+                                    <p>周一至周日 9:00 AM - 9:00 PM</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="about-card full-width">
+                        <h2 style="color: var(--primary-blue);">下载我们的应用</h2>
+                        <div class="download-buttons">
+                            <button class="download-btn ios-btn">
+                                <i class="fab fa-apple"></i>
+                                App Store
+                            </button>
+                            <button class="download-btn android-btn">
+                                <i class="fab fa-google-play"></i>
+                                Google Play
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    `;
+    
+    document.querySelector('.page-container').innerHTML = aboutHTML;
+    
+    // 添加关于页面的CSS
+    addAboutPageStyles();
+}
+
+// 添加关于页面的CSS样式
+function addAboutPageStyles() {
+    const style = document.createElement('style');
+    style.textContent = `
+        .about-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .about-card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: var(--shadow-md);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        
+        .about-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .about-card.full-width {
+            grid-column: 1 / -1;
+        }
+        
+        .about-icon {
+            width: 70px;
+            height: 70px;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            color: white;
+            font-size: 1.8rem;
+        }
+        
+        .about-card h2 {
+            color: #1e293b;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+        
+        .about-card p {
+            color: #64748b;
+            line-height: 1.7;
+        }
+        
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 25px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 20px;
+            background: #f8fafc;
+            border-radius: 15px;
+            transition: all 0.3s;
+        }
+        
+        .contact-item:hover {
+            background: #e2e8f0;
+            transform: translateX(5px);
+        }
+        
+        .contact-item i {
+            font-size: 1.5rem;
+            color: var(--primary-blue);
+            width: 40px;
+        }
+        
+        .contact-item strong {
+            display: block;
+            color: #1e293b;
+            margin-bottom: 5px;
+        }
+        
+        .contact-item p {
+            color: #64748b;
+            margin: 0;
+        }
+        
+        .download-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
+        
+        .download-btn {
+            padding: 18px 35px;
+            border: none;
+            border-radius: 15px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: all 0.3s;
+        }
+        
+        .ios-btn {
+            background: #000;
+            color: white;
+        }
+        
+        .android-btn {
+            background: #4285F4;
+            color: white;
+        }
+        
+        .download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+        
+        @media (max-width: 768px) {
+            .about-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-info {
+                grid-template-columns: 1fr;
+            }
+            
+            .download-buttons {
+                flex-direction: column;
+            }
+            
+            .download-btn {
+                justify-content: center;
+            }
+        }
+    `;
+    
+    if (!document.querySelector('#about-page-styles')) {
+        style.id = 'about-page-styles';
+        document.head.appendChild(style);
+    }
+}
+
+// 继续添加其他功能函数
+function loadCommunityPosts() {
+    // 这里可以加载社区帖子的逻辑
+    console.log('加载社区帖子...');
+}
+
+function createPost() {
+    const textarea = document.querySelector('.create-post textarea');
+    const content = textarea.value.trim();
+    
+    if (content) {
+        showToast('帖子发布成功！', 'success');
+        textarea.value = '';
+        // 这里可以添加发布帖子的API调用
+    } else {
+        showToast('请先输入内容', 'error');
+    }
+}
+
+// 切换深色模式
+function toggleDarkMode() {
+    const body = document.body;
+    body.classList.toggle('dark-mode');
+    showToast(body.classList.contains('dark-mode') ? '深色模式已开启' : '深色模式已关闭', 'info');
+}
+
+// 显示设置
+function showSettings() {
+    const settingsHTML = `
+        <div style="text-align: left; max-width: 400px; padding: 20px;">
+            <h3 style="color: var(--primary-blue); margin-bottom: 20px;">⚙️ 设置</h3>
+            
+            <div style="margin-bottom: 25px;">
+                <label style="display: block; margin-bottom: 10px; font-weight: 600;">通知设置</label>
+                <div style="background: #f8fafc; padding: 15px; border-radius: 10px;">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 15px;">
+                        <span>新消息通知</span>
+                        <input type="checkbox" checked style="transform: scale(1.3);">
+                    </div>
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 15px;">
+                        <span>补习中心更新</span>
+                        <input type="checkbox" checked style="transform: scale(1.3);">
+                    </div>
+                    <div style="display: flex; justify-content: space-between;">
+                        <span>社区互动提醒</span>
+                        <input type="checkbox" style="transform: scale(1.3);">
+                    </div>
+                </div>
+            </div>
+            
+            <div style="margin-bottom: 25px;">
+                <label style="display: block; margin-bottom: 10px; font-weight: 600;">搜索偏好</label>
+                <div style="background: #f8fafc; padding: 15px; border-radius: 10px;">
+                    <div style="margin-bottom: 15px;">
+                        <span style="display: block; margin-bottom: 5px;">默认筛选距离</span>
+                        <input type="range" min="1" max="50" value="10" style="width: 100%;">
+                        <div style="text-align: right; color: #64748b; font-size: 0.9rem;">10km</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="display: flex; gap: 10px; margin-top: 30px;">
+                <button onclick="saveSettings()" style="flex: 1; background: var(--gradient-primary); color: white; border: none; padding: 15px; border-radius: 10px; font-weight: 600; cursor: pointer;">
+                    保存设置
+                </button>
+                <button onclick="showToast('设置已重置', 'info')" style="flex: 1; background: #f1f5f9; color: #64748b; border: none; padding: 15px; border-radius: 10px; font-weight: 600; cursor: pointer;">
+                    恢复默认
+                </button>
+            </div>
+        </div>
+    `;
+    
+    alert(settingsHTML);
+}
+
+function saveSettings() {
+    showToast('设置已保存', 'success');
+}
+
+function logout() {
+    showToast('已退出登录', 'info');
+    // 这里可以添加登出逻辑
+}
+
+// 深色模式CSS
+const darkModeCSS = `
+    body.dark-mode {
+        background: #0f172a;
+        color: #cbd5e1;
+    }
+    
+    body.dark-mode .hero-section {
+        background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+    }
+    
+    body.dark-mode .search-orb {
+        background: rgba(30, 41, 59, 0.9);
+        color: #cbd5e1;
+    }
+    
+    body.dark-mode .center-crystal {
+        background: rgba(30, 41, 59, 0.9);
+        color: #cbd5e1;
+    }
+    
+    body.dark-mode .footer-galaxy {
+        background: linear-gradient(135deg, #020617 0%, #0f172a 100%);
+    }
+`;
+
+// 添加深色模式CSS
+const darkModeStyle = document.createElement('style');
+darkModeStyle.textContent = darkModeCSS;
+document.head.appendChild(darkModeStyle);
+
+// 更新卡片点击事件
+function updateCardClickEvents() {
+    // 修改现有的联系按钮功能
+    document.querySelectorAll('.contact-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const card = this.closest('.center-crystal');
+            const centerName = card.querySelector('.crystal-title').textContent;
+            const centerSubject = card.querySelector('.crystal-tag').textContent;
+            const centerCity = card.querySelectorAll('.info-petal')[0].querySelector('p').textContent;
+            const centerPrice = card.querySelector('.price-amount').textContent;
+            
+            openWhatsAppModal({
+                name: centerName,
+                subject: centerSubject,
+                city: centerCity,
+                price: centerPrice
+            });
+        });
+    });
+}
+
+// 页面加载完成后执行
+document.addEventListener('DOMContentLoaded', function() {
+    // 初始化页面
+    init();
+    
+    // 更新卡片事件
+    setTimeout(updateCardClickEvents, 1000);
+    
+    // 初始化底部导航
+    document.querySelectorAll('.nav-item').forEach(item => {
+        item.addEventListener('click', function(e) {
+            e.preventDefault();
+            const page = this.getAttribute('href').substring(1);
+            navigateTo(page);
+        });
+    });
+});
+</script>
+
+<!-- WhatsApp客服模态框 -->
+<div id="whatsappModal" class="whatsapp-modal" style="display: none;">
+    <div class="whatsapp-modal-content">
+        <div class="modal-header">
+            <h3><i class="fab fa-whatsapp" style="color: #25D366;"></i> 联系补习老师</h3>
+            <button class="close-modal" onclick="closeWhatsAppModal()">&times;</button>
+        </div>
+        
+        <div class="modal-body">
+            <div class="center-info" id="selectedCenterInfo">
+                <!-- 选中的补习中心信息会显示在这里 -->
+            </div>
+            
+            <form id="whatsappForm">
+                <div class="form-group">
+                    <label for="studentName"><i class="fas fa-user"></i> 学生姓名 *</label>
+                    <input type="text" id="studentName" placeholder="例如：张三" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="studentGrade"><i class="fas fa-graduation-cap"></i> 学生年级 *</label>
+                    <select id="studentGrade" required>
+                        <option value="">选择年级</option>
+                        <option value="小学 1-3年级">小学 1-3年级</option>
+                        <option value="小学 4-6年级">小学 4-6年级</option>
+                        <option value="中学 中一至中三">中学 中一至中三</option>
+                        <option value="中学 中四至中五">中学 中四至中五</option>
+                        <option value="中学 中六">中学 中六</option>
+                        <option value="大学预科">大学预科</option>
+                        <option value="成人学习">成人学习</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="contactNumber"><i class="fas fa-phone"></i> 联系电话 *</label>
+                    <input type="tel" id="contactNumber" placeholder="例如：012-345 6789" 
+                           pattern="[0-9]{3}-[0-9]{3} [0-9]{4}|[0-9]{10,11}" 
+                           title="格式：012-345 6789 或 0123456789" required>
+                    <small>格式：012-345 6789 或 0123456789</small>
+                </div>
+                
+                <div class="form-group">
+                    <label for="preferredTime"><i class="fas fa-clock"></i> 偏好的上课时间</label>
+                    <select id="preferredTime">
+                        <option value="">选择时间</option>
+                        <option value="工作日傍晚">工作日傍晚 (4pm-8pm)</option>
+                        <option value="周末早上">周末早上 (9am-1pm)</option>
+                        <option value="周末下午">周末下午 (2pm-6pm)</option>
+                        <option value="随时可以安排">随时可以安排</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="studentMessage"><i class="fas fa-comment"></i> 咨询内容 *</label>
+                    <textarea id="studentMessage" rows="3" placeholder="请简要说明您想咨询的问题..." required></textarea>
+                </div>
+                
+                <div class="form-group checkbox-group">
+                    <input type="checkbox" id="agreeTerms" required>
+                    <label for="agreeTerms">
+                        我同意将我的联系方式提供给补习中心，以便进行后续沟通
+                    </label>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="submit" class="whatsapp-submit-btn">
+                        <i class="fab fa-whatsapp"></i> 通过 WhatsApp 联系
+                    </button>
+                    <button type="button" class="cancel-btn" onclick="closeWhatsAppModal()">
+                        取消
+                    </button>
+                </div>
+            </form>
+        </div>
+        
+        <div class="modal-footer">
+            <p><i class="fas fa-info-circle"></i> 点击提交后，将自动跳转到 WhatsApp 与老师直接沟通</p>
+        </div>
+    </div>
+</div>
+
+<!-- 浮动客服按钮 -->
+<div class="floating-whatsapp-btn" onclick="openGeneralWhatsApp()" title="在线客服">
+    <i class="fab fa-whatsapp"></i>
+    <span class="pulse-ring"></span>
+</div>
+
+<!-- 汉堡菜单 -->
+<div class="hamburger-menu" id="hamburgerMenu">
+    <div class="hamburger-icon" onclick="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    <div class="menu-overlay" onclick="toggleMenu()"></div>
+    <div class="menu-content">
+        <div class="menu-header">
+            <div class="user-info">
+                <div class="avatar">
+                    <i class="fas fa-user-graduate"></i>
+                </div>
+                <div class="user-details">
+                    <h3>T4U 用户</h3>
+                    <p>欢迎使用 T4U Malaysia</p>
+                </div>
+            </div>
+            <button class="close-menu" onclick="toggleMenu()">&times;</button>
+        </div>
+        
+        <div class="menu-items">
+            <a href="#home" class="menu-item active" onclick="navigateTo('home')">
+                <i class="fas fa-home"></i>
+                <span>首页</span>
+            </a>
+            <a href="#community" class="menu-item" onclick="navigateTo('community')">
+                <i class="fas fa-users"></i>
+                <span>社区</span>
+            </a>
+            <a href="#explore" class="menu-item" onclick="navigateTo('explore')">
+                <i class="fas fa-compass"></i>
+                <span>探索</span>
+            </a>
+            <a href="#profile" class="menu-item" onclick="navigateTo('profile')">
+                <i class="fas fa-user"></i>
+                <span>我的</span>
+            </a>
+            <a href="#about" class="menu-item" onclick="navigateTo('about')">
+                <i class="fas fa-info-circle"></i>
+                <span>关于我们</span>
+            </a>
+        </div>
+        
+        <div class="menu-footer">
+            <div class="app-info">
+                <div class="app-logo">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <div class="app-details">
+                    <h4>T4U Malaysia</h4>
+                    <p>版本 2.0.1</p>
+                </div>
+            </div>
+            <div class="menu-actions">
+                <button class="menu-btn" onclick="toggleDarkMode()">
+                    <i class="fas fa-moon"></i>
+                    <span>深色模式</span>
+                </button>
+                <button class="menu-btn" onclick="showSettings()">
+                    <i class="fas fa-cog"></i>
+                    <span>设置</span>
+                </button>
+                <button class="menu-btn logout" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>退出登录</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 页面容器 -->
+<div class="page-container" id="pageContainer">
+    <!-- 现有内容会在这里显示 -->
+</div>
+
+<!-- 底部导航栏 -->
+<div class="bottom-nav">
+    <a href="#home" class="nav-item active" onclick="navigateTo('home')">
+        <i class="fas fa-home"></i>
+        <span>首页</span>
+    </a>
+    <a href="#community" class="nav-item" onclick="navigateTo('community')">
+        <i class="fas fa-users"></i>
+        <span>社区</span>
+    </a>
+    <a href="#explore" class="nav-item" onclick="navigateTo('explore')">
+        <i class="fas fa-compass"></i>
+        <span>探索</span>
+    </a>
+    <a href="#profile" class="nav-item" onclick="navigateTo('profile')">
+        <i class="fas fa-user"></i>
+        <span>我的</span>
+    </a>
+</div>
+</body>
+</html>
